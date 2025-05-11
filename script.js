@@ -34,13 +34,24 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e) {
     
     // Ambil nilai form
     const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+    const jumlah = document.getElementById('jumlah').value;
     const attendance = document.getElementById('attendance').value;
     const message = document.getElementById('message').value;
     
-    // Di sini Anda bisa menambahkan kode untuk mengirim data ke server
-    // Contoh menggunakan alert untuk demo
-    alert(`Terima kasih ${name} atas konfirmasi kehadiran Anda!`);
+    // Nomor WhatsApp tujuan (ganti sesuai kebutuhan)
+    const waNumber = '6282297123021';
+    let hadirText = attendance === 'yes' ? 'Ya, Saya Akan Hadir' : 'Maaf, Saya Tidak Bisa Hadir';
+    
+    // Format pesan WhatsApp
+    const waMessage =
+        `RSVP UNDANGAN%0A` +
+        `Nama: ${name}%0A` +
+        `Kehadiran: ${hadirText}%0A` +
+        `Jumlah yang Hadir: ${jumlah}%0A` +
+        `Pesan: ${message}`;
+    
+    // Redirect ke WhatsApp
+    window.open(`https://wa.me/${waNumber}?text=${waMessage}`, '_blank');
     
     // Reset form
     this.reset();
