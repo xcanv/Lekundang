@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="jawa-decoration"></div>
+    <video id="bgVideo" autoplay loop muted playsinline style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;"></video>
+    <!-- Overlay Input Nama Tamu -->
+    <div id="nameOverlay" class="name-overlay">
+        <div class="name-overlay-content">
+            <h2>Undangan Pernikahan</h2>
+            <p>Kepada Yth, Bapak/Ibu/Saudara/i</p>
+            <div class="name-input-container">
+                <input id="guestNameInput" type="text" placeholder="Masukkan Nama Anda">
+                <button id="submitGuestName">Buka Undangan</button>
+            </div>
+        </div>
+    </div>
+    <!-- Undangan Box -->
+    <div class="undangan-wrapper" id="undanganWrapper">
+        <div class="undangan-box">
+            <h2>Undangan Pernikahan</h2>
+            <p>Kepada Yth, Bapak/Ibu/Saudara/i</p>
+            <p class="guest-name"><span id="guestNameDisplay"></span></p>
+            <p>Silakan klik tombol di bawah untuk membuka undangan Pernikahan.</p>
+            <button class="btn-buka" id="btnBukaUndangan">Buka Undangan</button>
+        </div>
+    </div>
+    <!-- Hero Section -->
+    <section class="hero-invitation" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">Indra & Eka</h1>
+            <p class="hero-subtitle">Swipe Up</p>
+        </div>
+    </section>
+    <!-- Mempelai Section -->
+    <section class="couple" id="couple">
+        <div class="container">
+            <h2>Mempelai</h2>
+            <p class="section-intro">Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, insyaaAllah kami akan menyelenggarakan acara pernikahan anak kami:</p>
+            <div class="couple-content">
+                <div class="bride">
+                    <div class="couple-image">
+                        <img src="images/bride.jpg" alt="Mempelai Wanita">
+                    </div>
+                    <h3>Eka Putri</h3>
+                    <p class="couple-name">Nur Habibah</p>
+                    <div class="social-media">
+                        <a href="#" target="_blank">@eka.putri</a>
+                    </div>
+                    <p class="couple-desc">Putri Pertama</p>
+                    <p class="parents">Bapak Edi Widodo<br>&<br>Ibu Lilik Lismiana</p>
+                </div>
+                <div class="wedding-ring">
+                    <img src="images/ring.png" alt="Wedding Ring">
+                </div>
+                <div class="groom">
+                    <div class="couple-image">
+                        <img src="images/groom.jpg" alt="Mempelai Pria">
+                    </div>
+                    <h3>Indra Kusuma</h3>
+                    <p class="couple-name">Nugroho</p>
+                    <div class="social-media">
+                        <a href="#" target="_blank">@indra.kusuma</a>
+                    </div>
+                    <p class="couple-desc">Putra Pertama</p>
+                    <p class="parents">Bapak Alfredo Torres<br>&<br>Ibu Marceline Anderson</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Waktu & Tempat Section -->
+    <section class="event-details" id="event">
+        <div class="container">
+            <h2>Waktu & Tempat</h2>
+            <div class="countdown-container">
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span id="days">00</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+            <div class="quran-verse">
+                <p>"Dan Di Antara Tanda-Tanda (Kebesaran)-Nya Ialah Dia Menciptakan Pasangan-Pasangan Untukmu Dari Jenismu Sendiri, Agar Kamu Cenderung Dan Merasa Tenteram Kepadanya, Dan Dia Menjadikan Di Antaramu Rasa Kasih Dan Sayang. Sesungguhnya Pada Yang Demikian Itu Benar-Benar Terdapat Tanda-Tanda (Kebesaran Allah) Bagi Kaum Yang Berpikir."</p>
+                <p class="verse-source">- Ar-Rum 21 -</p>
+            </div>
+            <div class="event-schedule">
+                <div class="event-item">
+                    <h3>Akad Nikah</h3>
+                    <div class="event-time">
+                        <p class="date">05 Mei 2025</p>
+                        <p class="time">Pukul 10:00 WIB - Selesai</p>
+                    </div>
+                    <div class="event-location">
+                        <h4>Lokasi</h4>
+                        <p>Jatisari RT/RW 003/001</p>
+                        <p>Jalan Jatisari Raya</p>
+                        <a href="#" class="direction-btn">Lihat Lokasi</a>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <h3>Resepsi</h3>
+                    <div class="event-time">
+                        <p class="date">05 Mei 2025</p>
+                        <p class="time">Pukul 10:00 WIB - Selesai</p>
+                    </div>
+                    <div class="event-location">
+                        <h4>Lokasi</h4>
+                        <p>Rumah Pak RT 003</p>
+                        <p>Jalan Jatisari Raya</p>
+                        <a href="#" class="direction-btn">Lihat Lokasi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Galeri Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2>Momen Bahagia Kami</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery1.jpg" alt="Gallery 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery2.jpg" alt="Gallery 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery3.jpg" alt="Gallery 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery4.jpg" alt="Gallery 4">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <div class="video-wrapper">
+                <video id="weddingVideo" src="video/video.mp4" controls autoplay loop muted style="width:100%;max-width:700px;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,0.15);"></video>
+            </div>
+        </div>
+    </section>
+    <!-- Lokasi Section -->
+    <section class="location" id="location">
+        <div class="container">
+            <h2>Lokasi Acara</h2>
+            <div class="map-container">
+                <div id="map" style="height: 450px; width: 100%; border-radius: 8px;"></div>
+            </div>
+            <div class="location-details">
+                <h3>Akad Nikah</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Jatiblimbing RT/RW 003/001</p>
+                <p><i class="fas fa-location-arrow"></i> Jalan Jatisari Raya</p>
+                <a href="https://maps.app.goo.gl/XhbembCDJv2NHhKFA" target="_blank" class="direction-btn">
+                    <i class="fas fa-directions"></i> Petunjuk Arah
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- RSVP Section -->
+    <section class="rsvp" id="rsvp">
+        <div class="container">
+            <h2>RSVP</h2>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <input type="text" id="name" required placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" required placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <select id="attendance" required>
+                        <option value="">Konfirmasi Kehadiran</option>
+                        <option value="yes">Ya, Saya Akan Hadir</option>
+                        <option value="no">Maaf, Saya Tidak Bisa Hadir</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Pesan & Doa"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Kirim</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Undangan Pernikahan Indra & Eka. Credit By Dev Hanzz.</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+        // Inisialisasi peta
+        var map = L.map('map').setView([-7.241272, 111.870538], 15);
+        
+        // Tambahkan tile layer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Tambahkan marker
+        L.marker([-7.241272, 111.870538]).addTo(map)
+            .bindPopup('Lokasi Acara')
+            .openPopup();
+    </script>
+    <audio id="weddingMusic" src="audio/wedding.mp3" loop></audio>
+    <div id="musicControl" style="position:fixed;top:20px;right:20px;z-index:9999;cursor:pointer;">
+        <i id="musicIcon" class="fa fa-music" style="font-size:2rem;color:#8B4513;"></i>
+    </div>
+</body>
+</html> 
