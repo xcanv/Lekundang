@@ -1,0 +1,5 @@
+name = "undangan"
+compatibility_date = "2025-05-11"
+
+[site]
+bucket = "./"  # Folder tempat file index.html berada
