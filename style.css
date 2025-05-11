@@ -1219,26 +1219,27 @@ footer {
 .undangan-box .btn-buka {
     background: #8B4513;
     color: white;
-    padding: 1rem 2.5rem;
     border: none;
-    border-radius: 50px;
+    padding: 12px 30px;
+    border-radius: 25px;
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    margin-top: 1rem;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
     box-shadow: 0 4px 15px rgba(139, 69, 19, 0.2);
 }
 
 .undangan-box .btn-buka:hover {
-    background: #6B3410;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+    background: #9B5523;
 }
 
 .undangan-box .btn-buka:active {
-    transform: translateY(1px);
+    transform: translateY(0);
 }
 
 .undangan-box .btn-buka::after {
@@ -1251,11 +1252,11 @@ footer {
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.1),
         transparent
     );
     transform: rotate(45deg);
-    animation: buttonShine 2s infinite;
+    animation: buttonShine 3s infinite;
 }
 
 @keyframes buttonShine {

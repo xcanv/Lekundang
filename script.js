@@ -180,31 +180,38 @@ const countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
 // Fungsi untuk membuka undangan
-document.getElementById('btnBukaUndangan').addEventListener('click', function() {
-    const undanganWrapper = document.getElementById('undanganWrapper');
-    const mainContent = document.querySelector('.hero-invitation');
-    
-    // Animasi fade out untuk undangan box
-    undanganWrapper.classList.remove('active');
-    
-    setTimeout(() => {
-        undanganWrapper.style.display = 'none';
-        
-        // Tampilkan konten utama dengan animasi
-        mainContent.style.display = 'block';
-        mainContent.style.opacity = '0';
-        
-        setTimeout(() => {
-            mainContent.style.opacity = '1';
-            mainContent.style.transition = 'opacity 1s ease';
-        }, 100);
-        
-        // Mulai musik
-        const weddingMusic = document.getElementById('weddingMusic');
-        weddingMusic.play().catch(error => {
-            console.log("Autoplay prevented:", error);
+document.addEventListener('DOMContentLoaded', function() {
+    const btnBukaUndangan = document.getElementById('btnBukaUndangan');
+    if (btnBukaUndangan) {
+        btnBukaUndangan.addEventListener('click', function() {
+            const undanganWrapper = document.getElementById('undanganWrapper');
+            const mainContent = document.querySelector('.hero-invitation');
+            
+            // Animasi fade out untuk undangan box
+            undanganWrapper.classList.remove('active');
+            
+            setTimeout(() => {
+                undanganWrapper.style.display = 'none';
+                
+                // Tampilkan konten utama dengan animasi
+                mainContent.style.display = 'block';
+                mainContent.style.opacity = '0';
+                
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transition = 'opacity 1s ease';
+                }, 100);
+                
+                // Mulai musik
+                const weddingMusic = document.getElementById('weddingMusic');
+                if (weddingMusic) {
+                    weddingMusic.play().catch(error => {
+                        console.log("Autoplay prevented:", error);
+                    });
+                }
+            }, 500);
         });
-    }, 500);
+    }
 });
 
 // Cek apakah pengunjung sudah pernah mengisi nama
