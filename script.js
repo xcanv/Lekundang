@@ -105,8 +105,63 @@ guestNameInput.addEventListener('input', function() {
     guestNameInput.style.borderColor = '#ccc';
 });
 
-// Fungsi untuk membuka undangan
+// Fungsi untuk mengelola musik
 document.addEventListener('DOMContentLoaded', function() {
+    const weddingMusic = document.getElementById('weddingMusic');
+    const musicControl = document.getElementById('musicControl');
+    const musicIcon = document.getElementById('musicIcon');
+    let isPlaying = false;
+
+    // Fungsi untuk memulai musik
+    function playMusic() {
+        if (weddingMusic) {
+            weddingMusic.volume = 1;
+            weddingMusic.muted = false;
+            const playPromise = weddingMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isPlaying = true;
+                    if (musicIcon) musicIcon.className = 'fa fa-music';
+                }).catch(error => {
+                    console.log("Autoplay prevented:", error);
+                    isPlaying = false;
+                    if (musicIcon) musicIcon.className = 'fa fa-pause';
+                });
+            }
+        }
+    }
+
+    // Fungsi untuk menghentikan musik
+    function pauseMusic() {
+        if (weddingMusic) {
+            weddingMusic.pause();
+            isPlaying = false;
+            if (musicIcon) musicIcon.className = 'fa fa-pause';
+        }
+    }
+
+    // Event listener untuk tombol kontrol musik
+    if (musicControl) {
+        musicControl.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isPlaying) {
+                pauseMusic();
+            } else {
+                playMusic();
+            }
+        });
+    }
+
+    // Coba putar musik saat halaman dimuat
+    playMusic();
+
+    // Coba putar musik saat ada interaksi pengguna
+    document.addEventListener('click', function initAudio() {
+        playMusic();
+    });
+
+    // Coba putar musik saat undangan dibuka
     const btnBukaUndangan = document.getElementById('btnBukaUndangan');
     if (btnBukaUndangan) {
         btnBukaUndangan.addEventListener('click', function() {
@@ -128,14 +183,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     mainContent.style.transition = 'opacity 1s ease';
                 }, 100);
                 
-                // Mulai musik
-                const weddingMusic = document.getElementById('weddingMusic');
-                if (weddingMusic) {
-                    weddingMusic.play().catch(error => {
-                        console.log("Autoplay prevented:", error);
-                    });
-                }
+                // Mulai musik saat undangan dibuka
+                playMusic();
             }, 500);
+        });
+    }
+
+    // Event listener untuk status musik
+    if (weddingMusic) {
+        weddingMusic.addEventListener('play', function() {
+            isPlaying = true;
+            if (musicIcon) musicIcon.className = 'fa fa-music';
+        });
+
+        weddingMusic.addEventListener('pause', function() {
+            isPlaying = false;
+            if (musicIcon) musicIcon.className = 'fa fa-pause';
+        });
+
+        weddingMusic.addEventListener('ended', function() {
+            weddingMusic.currentTime = 0;
+            playMusic();
         });
     }
 });
