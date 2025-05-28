@@ -115,8 +115,8 @@
                     </div>
                     <div class="event-location">
                         <h4>Lokasi</h4>
-                        <p>Jatisari RT/RW 003/001</p>
-                        <p>Jalan Jatisari Raya</p>
+                        <p>Jatirunggo RT/RW 003/001</p>
+                        <p>Jalan Sniper raya</p>
                     </div>
                 </div>
                 <div class="event-item">
@@ -171,8 +171,8 @@
             </div>
             <div class="location-details">
                 <h3>Akad Nikah</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jatiblimbing RT/RW 003/001</p>
-                <p><i class="fas fa-location-arrow"></i> Jalan Jatisari Raya</p>
+                <p><i class="fas fa-map-marker-alt"></i> Jatirunggo RT/RW 003/001</p>
+                <p><i class="fas fa-location-arrow"></i> Jalan Sniper Raya</p>
                 <a href="https://maps.app.goo.gl/XhbembCDJv2NHhKFA" target="_blank" class="direction-btn">
                     <i class="fas fa-directions"></i> Petunjuk Arah
                 </a>
@@ -210,7 +210,7 @@
     <script src="script.js"></script>
     <script>
         // Inisialisasi peta
-        var map = L.map('map').setView([-7.241272, 111.870538], 15);
+        var map = L.map('map').setView([-7,2026018, 110,4790407], 15);
         
         // Tambahkan tile layer dari OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -218,7 +218,7 @@
         }).addTo(map);
 
         // Tambahkan marker
-        L.marker([-7.241272, 111.870538]).addTo(map)
+        L.marker([-7,2026018, 110,4790407]).addTo(map)
             .bindPopup('Lokasi Acara')
             .openPopup();
     </script>
